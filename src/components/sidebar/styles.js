@@ -14,8 +14,8 @@ const SideBarStyles = styled.aside`
       display: flex;
       align-items: center;
       padding: .5rem;
-      margin: 1rem 0;
-      font-size: 1.5rem;
+      margin: .75rem 0;
+      font-size: 1.375rem;
       font-weight: 500;
       color: #575757;
       :hover {
@@ -28,7 +28,7 @@ const SideBarStyles = styled.aside`
    }
    .menu-icon {
       margin-right: 1rem;
-      font-size: 1.375rem;
+      font-size: 1.25rem;
    }
 `;
 

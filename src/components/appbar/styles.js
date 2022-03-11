@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const AppBarStyles = styled.nav`
    position:relative;
-   padding: 1.5rem 3rem;
+   padding: 1rem 3rem;
    background-color: ${props => props.bg || "#171717"};
    border-bottom: 1px solid ${props => props.bordercolor || "#E1E1E1"};
 `;
