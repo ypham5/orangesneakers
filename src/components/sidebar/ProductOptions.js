@@ -17,7 +17,7 @@ export const menuItems = [
     },
     {
         name: "Products",
-        to: "add",
+        to: "products",
         icon: <HiTag />,
     },
     {
@@ -63,7 +63,9 @@ export const menuItems = [
 
 ];
 const ProductOptionStyles = styled.ul`
-
+    a:hover {
+        text-decoration: none;
+    }
 `;
 
 function ProductOptions(props) {

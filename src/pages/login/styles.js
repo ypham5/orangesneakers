@@ -74,7 +74,7 @@ const LoginPageStyles = styled.section`
 
   .copyright {
     text-align: center;
-    color: #E1E1E1;
+    color: #D1D1D1;
   }
   `;
 const FormControl = styled.div`

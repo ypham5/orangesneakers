@@ -10,8 +10,8 @@ import { auth } from "libs/firebase";
 import { LoginPageStyles, FormControl } from "./styles";
 import { Label, Input } from "ui/forms";
 import { SubmitButton } from "ui/buttons";
-import { Brand } from './../../components/branding/'
-import LoginImg from './../../static/images/sneakers-login.jpg';
+import { Brand } from 'components/branding/'
+import LoginImg from 'static/images/sneakers-login.jpg';
 
 // STATE
 function LoginPage(props) {

@@ -5,8 +5,8 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from 'libs/firebase'
 
 import { NotFoundPageStyles } from "./styles";
-import NotFoundImg from './../../static/images/sneakers-404.jpg';
-import { Brand } from './../../components/branding/'
+import NotFoundImg from 'static/images/sneakers-404.jpg';
+import { Brand } from 'components/branding/'
 
 function PageNotFound(props) {
     const [isUser, setIsUser] = useState(false)

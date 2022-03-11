@@ -87,7 +87,7 @@ const NotFoundPageStyles = styled.section`
 
   .copyright {
     text-align: center;
-    color: #E1E1E1;
+    color: #D1D1D12;
     margin-bottom: 0;
     font-size: 1.125rem;
   }

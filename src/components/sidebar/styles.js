@@ -21,7 +21,6 @@ const SideBarStyles = styled.aside`
       :hover {
          color: #11DABC;
          border-right: 4px solid #11DABC;
-         text-decoration: underline;
          box-shadow:  inset 3px 2px 5px 0 rgba(255, 255, 255, .8), rgba(104, 139, 255, 0.1) 7px 3px 4px, rgba(165,165,165, 0.05) 2px 5px 5px;
          border-radius: 5px;
       }

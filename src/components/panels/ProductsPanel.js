@@ -1,7 +1,7 @@
  import React from 'react';
  import {PanelStyles, PanelBody, PanelHeader} from './styles';
 
- function AllProductsPanel({title, ...props}){
+ function ProductsPanel({title, ...props}){
      return( 
          <PanelStyles>
              <PanelHeader>
@@ -14,4 +14,4 @@
      );
  }
 
- export default AllProductsPanel;
+ export default ProductsPanel;
