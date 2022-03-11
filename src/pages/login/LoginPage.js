@@ -64,6 +64,7 @@ function LoginPage(props) {
   // Login A User Using Auth
   return (
     <LoginPageStyles>
+    <div className="flex-container">
       <div className='left-col'>
         <img src={LoginImg} alt='sneakers illustration' />
         <div className='branding'>
@@ -100,6 +101,8 @@ function LoginPage(props) {
           </FormControl>
         </form>
       </div>
+    </div>
+    <p className='copyright'>© 2022 Orange Label Company by Yen Pham. All rights reserved.</p>
     </LoginPageStyles>
   );
 }

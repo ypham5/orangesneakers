@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from 'libs/firebase'
 
-import { NotFoundPageStyles} from "./styles";
+import { NotFoundPageStyles } from "./styles";
 import NotFoundImg from './../../static/images/sneakers-404.jpg';
 import { Brand } from './../../components/branding/'
 
@@ -21,24 +21,27 @@ function PageNotFound(props) {
 
     return (
         <NotFoundPageStyles>
-            <div className='left-col'>
-                <img src={NotFoundImg} alt='sneakers illustration' />
-                <div className='branding'>
-                    <Brand />
-                    <p><span>Sneakers</span> Marketplace</p>
+            <div className="flex-container">
+                <div className='left-col'>
+                    <img src={NotFoundImg} alt='sneakers illustration' />
+                    <div className='branding'>
+                        <Brand />
+                        <p><span>Sneakers</span> Marketplace</p>
+                    </div>
+                </div>
+                <div className='right-col'>
+                    <header>
+                        <h1>404</h1>
+                        <h2>page not found</h2>
+                        <p>Oops..you seem lost..</p>
+                        {
+                            isUser ? <Link to='/dashboard'>back to safety</Link> : <Link to='/'>back to safety</Link>
+                        }
+                    </header>
                 </div>
             </div>
-            <div className='right-col'>
-                <header>
-                    <h1>404</h1>
-                    <h2>page not found</h2>
-                    <p>Oops..you seem lost..</p>
-                    {
-                        isUser ? <Link to='/dashboard'>back to safety</Link> : <Link to='/'>back to safety</Link>
-                    }
-                </header>
-            </div>
-        </NotFoundPageStyles>
+            <p className='copyright'>© 2022 Orange Label Company by Yen Pham. All rights reserved.</p>
+        </NotFoundPageStyles >
     )
 }
 

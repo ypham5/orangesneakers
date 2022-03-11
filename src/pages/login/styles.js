@@ -3,11 +3,13 @@ import styled from "styled-components";
 
 const LoginPageStyles = styled.section`
   background-color: #fff;
-  display: flex;
-  max-width: 1400px;
-  margin: 10rem auto;
-  box-shadow: rgba(104, 139, 255, 0.1) 0px 24px 48px 0px, rgba(17, 12, 46, 0.15) 0px 20px 48px 0px;
-  border-radius: 10px;
+  .flex-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 8rem auto;
+    box-shadow: rgba(104, 139, 255, 0.1) 0px 24px 48px 0px, rgba(17, 12, 46, 0.15) 0px 20px 48px 0px;
+    border-radius: 10px;
+  }
 
   h2 {
     font-size: 2.5rem;
@@ -68,6 +70,11 @@ const LoginPageStyles = styled.section`
   .right-col {
     margin: 5rem 0 0 8.5rem;
     width: 420px;
+  }
+
+  .copyright {
+    text-align: center;
+    color: #E1E1E1;
   }
   `;
 const FormControl = styled.div`

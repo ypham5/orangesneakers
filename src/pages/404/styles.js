@@ -3,12 +3,13 @@ import styled from "styled-components";
 
 const NotFoundPageStyles = styled.section`
   background-color: #fff;
-  display: flex;
-  max-width: 1400px;
-  margin: 10rem auto;
-  box-shadow: rgba(104, 139, 255, 0.1) 0px 24px 48px 0px, rgba(17, 12, 46, 0.15) 0px 20px 48px 0px;
-  border-radius: 10px;
-
+  .flex-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 8rem auto;
+    box-shadow: rgba(104, 139, 255, 0.1) 0px 24px 48px 0px, rgba(17, 12, 46, 0.15) 0px 20px 48px 0px;
+    border-radius: 10px;
+  }
 
   h1 {
     font-size: 10rem;
@@ -82,6 +83,13 @@ const NotFoundPageStyles = styled.section`
           box-shadow:  inset 3px 2px 5px 0 rgba(255, 255, 255, .5), rgba(104, 139, 255, 0.1) 7px 3px 10px, rgba(0,0,0, 0.1) 7px 5px 10px;
       }
     }
+  }
+
+  .copyright {
+    text-align: center;
+    color: #E1E1E1;
+    margin-bottom: 0;
+    font-size: 1.125rem;
   }
   `;
 
