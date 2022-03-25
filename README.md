@@ -1,11 +1,12 @@
 
-Orange - Basic Dashboard
+Orange - Dashboard
 ======================================
 
-The dashboard will be the loading interface with Login Page, Main DashBoard and 404 Page
+The dashboard will be the loading interface with Login Page, Protected Routes, Protected Routes, Product Preview and 404 Page
 <!-- toc -->
 * [Login Page](#Login)
-* [Main DashBoard](#Dashboard)
+* [Panels Nested Routes](#Panels)
+* [Add Product Panel](#Add-Product-Panel)
 * [Page Not Found](#Page-Not-Found)
 
 <!-- tocstop -->
@@ -74,76 +75,180 @@ function onHandleSignIn (e){
     }
 ```
 
-# Dashboard
+# Panels
+These names should match up with the nested route paths that you create in the App.js component.
+## View All Panel (default panel)
+View All Panel Route Path: all
 
-## DashBoardPage.js Creating A Protected Route 
-To check to make sure that only a signed in user can access the dashboard we have to create a protected route. To do this we will have to create a few methods that will work together to check the current login status. If there is a firebase user then a successfull login will allow the user access to the dashboard to do this we will use the onAuthStateChange() method.  
-<br/>
-__Import the Required dependancies__  
-From the Firebase SDK import the onAuthStateChanged method. This method listens for changes in the authentication state, when a user signs in or logs out. We will use this to check if there is a firebase user trying to access the page.
+## Add New Product Panel
+Add New Panel Route Path: add
 
+## Edit Products Panel
+Edit Panel Route Path: edit
+
+App.js
 ```javascript
-import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
-
-import { onAuthStateChanged } from 'firebase/auth'
-import {auth} from 'libs/firebase'
+function App() {
  
+  return (
+       <>
+         <Routes>
+           <Route path="/"  element={<LoginPage/>}/>
+           <Route path="dashboard"  element={<DashBoardPage/>}>
+              <Route index element={<HomePanel title="All Products" />}/>
+              <Route path="orders" element={<OrdersPanel title="Orders" />}/>
+              <Route path="add" element={<AddProductsPanel title="Add Product" />}/>
+              <Route path="edit" element={<EditProductsPanel title="Edit Product" />}/>
+              <Route path="customers" element={<CustomersPanel title="Customers" />}/>
+           </Route>
+           <Route path="*"  element={<PageNotFound/>}/>
+         </Routes>
+       </>
+  );
+}
 
-import {SideBar} from 'components/sidebar'
-import  {AppBar}  from 'components/appbar'
-import {DashBoardStyles} from './styles'
-
-```  
-<br/>  
-
-__Adding The AuthStateChange Observer__  
-Inside the DashBoardPage function start by creating a piece of state called ```isUser.```. The default state for a firebase user is false. Nobody should be allowed to access the page unless they are logged in. Next use the useNavigate method from the react router dom package. We will use this to return unauthorized users back to the login screen.  
-Create the ```onAuthStateChange()``` to check to see if there is a current logged in user. If there is then we can change the state to true.
- 
-
-```javascript
-
-  function DashBoardPage  (props){
-    const [isUser, setIsUser]= useState(false)
-    const navigator = useNavigate();
-
-    onAuthStateChanged(auth, (user) => {
-   
-        if (user) {
-            setIsUser(true)
-     
-        } else {
-            // error shouldn't get access return to the login page
-            setIsUser(false)
-            navigator('/')
-        }
-      });
-```  
-<br/>
-
-__Conditional Rendering__  
-Because the onAuthStateChange method changes the value of the state variable isUser then we can use this to render the correct piece of UI state, which is the dashboard. The null is returned becaulse we do not want to see anything while onAuthStateChange is checking with firebase to see if there is a user. Thats it we now have a protected route.
-
-```javascript
-
-      if(isUser){
-        return( 
-            <>
-            <AppBar/>
-            <DashBoardStyles>
-               <SideBar/>
-                <Outlet/>
-            </DashBoardStyles>
-            </>
-        )
-      } 
-
-      return null
-  }
-  
-  export default DashBoardPage 
 ```
+
+# Add Product Panel
+## AddProductPanel.js Using widget AddProduct.js to add new product
+the function addproduct will useState() to set and handle submit data: product name, price, description, image, loader and number formatter
+```javascript
+  const [isWriting, setIsWriting] = useState(false)
+  const [productName, setProductName] = useState(defaults.name)
+  const [productPrice, setProductPrice] = useState(defaults.price)
+  const [productDescription, setProductDescription] = useState(defaults.description)
+  const [productImage, setProductImage] = useState({previewImage:PlaceHolderImage, file:null})
+  const [loading, productLoader] = useAddNewProduct();
+  const formatter = useNumberFormat()
+
+```  
+## Product Editor
+Gathering product entry form and product preview
+```javascript
+function ProductEditor ({children, productName, productPrice, productDescription, productImage, handleSubmit, handleProductName, handleProductPrice, handleProductDescription, setProductImage, ...props})  {
+  return (
+        <ProductEditorStyles  {...props}>
+           <ProductDataEntryForm 
+            handleProductName={handleProductName}
+            handleProductPrice={handleProductPrice}
+            handleProductDescription={handleProductDescription}
+            setProductImage={setProductImage}
+            handleSubmit={handleSubmit}
+           />
+           <ProductPreview 
+            productName={productName}
+            productPrice={productPrice}
+            productDescription={productDescription}
+            productImage={productImage}
+           />
+        </ProductEditorStyles>
+  )
+}
+
+```
+
+### Product Data Entry Form
+Creating styled entry form to promp data
+```javascript
+function ProductDataEntryForm({ children, handleProductName, handleProductPrice, handleSubmit, handleProductDescription, setProductImage,...props }) {
+  return (
+    <ProductDataEntryFormStyles  {...props} onSubmit={handleSubmit}>
+      <ProductImage>
+        <Label>Product Image</Label>
+        <ProductImageDropBox setProductImage={setProductImage}/>
+      </ProductImage>
+      <fieldset>
+      <ProductName>
+        <Label>Product Name</Label>
+        <Input onChange={(e)=>handleProductName(e.target.value.trim())} maxLength={30}/>
+      </ProductName>
+      <ProductPrice
+      ><Label>Product Price</Label>
+        <Input width="200px" onChange={(e)=>handleProductPrice(e.target.value.trim())} maxLength={8}/>
+      </ProductPrice>
+      </fieldset>
+      <ProductDescription>
+        <Label>Product Description</Label>
+        <TextArea onChange={(e)=>handleProductDescription(e.target.value.trim())} maxLength={250} rows={6}/>
+      </ProductDescription>
+
+      <div>
+        <SubmitButton width="100%" padding=".75rem 0" margin="1.125rem 0 0 0" type="submit">Add Product</SubmitButton>
+      </div>
+
+    </ProductDataEntryFormStyles>
+  )
+}
+```
+### Product Image Drop Box
+Creating dropZone for input image 
+__Import Dependancies__  
+Import the required functionality for the Image Drop Box Component.
+```javascript
+import {useDropzone} from 'react-dropzone'
+```
+### Product Preview   
+Passing data variable to show information about product
+```javascript
+function ProductPreview ({children, productName, productPrice, productImage, productDescription, ...props})  {
+  return (
+        <ProductPreviewStyles {...props}>
+           <ProductImage>
+              <img src={productImage.previewImage} alt="Orange Sneakers Marketplace" width="320" height="200"/>
+           </ProductImage>
+           <ProductName>{productName}</ProductName>
+           <ProductPrice>${productPrice}</ProductPrice>
+           <ProductDescription>{productDescription}</ProductDescription>
+        </ProductPreviewStyles>
+  )
+}
+```
+
+## Editor FeedBack
+After the submit button is clicked, the Editor feedback is used to show the status of uploading and successfully uploaded and there are two button to help navigate to add another prouduct or view all uploaded products. 
+
+```javascript
+
+function EditorFeedBack ({children, status, writeCompleted, ...props})  {
+    const navigator = useNavigate()
+  return (
+        <EditorFeedBackStyles  {...props}>
+          { 
+           !status
+           ?
+           <FeedBack>
+             <AiOutlineCheckCircle color="11DABC" size="12rem"/>
+             <FeedBackMessage>
+               Product Uploaded Successfully
+             </FeedBackMessage>
+           </FeedBack>
+            :
+            <FeedBack>
+             <AiOutlineCloudUpload color="11DABC" size="12rem"/>
+             <FeedBackMessage>
+               Uploading New Product
+             </FeedBackMessage>
+           </FeedBack>
+          }
+           <FeedBackOption>
+             <Button
+             bc="#F05523"
+             color="#f8fafc"
+             onClick={() => writeCompleted(false)}
+             disabled={status}
+             >Add Another Product</Button>
+             <Button
+             bc="#171717"
+             color="#f8fafc"
+              onClick={() => navigator('/dashboard')}
+             >View All</Button>
+           </FeedBackOption>
+
+        </EditorFeedBackStyles>
+  )
+}
+```
+
 # Page-Not-Found
 
 ## PageNotFound.js Checking For A Valid User

@@ -5,6 +5,7 @@ const NotFoundPageStyles = styled.section`
   background-color: #fff;
   .flex-container {
     display: flex;
+    flex-direction: row-reverse;
     max-width: 1400px;
     margin: 8rem auto;
     box-shadow: rgba(104, 139, 255, 0.1) 0px 24px 48px 0px, rgba(17, 12, 46, 0.15) 0px 20px 48px 0px;
@@ -14,7 +15,7 @@ const NotFoundPageStyles = styled.section`
   h1 {
     font-size: 10rem;
     font-weight: 900;
-    color: #E1E1E1;
+    color: #E3E3E3;
     line-height: 1;
   }
 
@@ -34,7 +35,7 @@ const NotFoundPageStyles = styled.section`
   .left-col {
     position:relative;
     border-radius: 10px;
-    box-shadow:  inset 3px 2px 5px 0 rgba(255,255,255, .5), rgba(104, 139, 255, 0.1) 7px 3px 10px, rgba(0,0,0, 0.1) 7px 5px 10px;
+    box-shadow:  inset 1px 0px 1px 0px rgba(255,255,255, .5), rgba(104, 139, 255, 0.1) 1px -1px 0px, rgba(0,0,0, 0.1) -10px 0px 10px; */
   }
 
   .branding {
@@ -62,7 +63,8 @@ const NotFoundPageStyles = styled.section`
   }
 
   .right-col {
-    margin: 7.5rem 0 0 10rem;
+    padding: 8rem;
+    ${'' /* box-shadow:  inset 3px 2px 5px 0 rgba(255,255,255, .5), rgba(104, 139, 255, 0.1) 7px 3px 10px, rgba(0,0,0, 0.1) 7px 5px 10px; */}
     width: 420px;
     a {
       background-color: ${props => props.bgcolor || '#F05523'};
@@ -78,7 +80,7 @@ const NotFoundPageStyles = styled.section`
       text-decoration: none;
       text-transform: uppercase;
       :hover {
-          background-color: ${props => props.bgcolor || '#1728ea'};
+          background-color: ${props => props.bgcolor || '#11DABC'};
           color: ${props => props.color || '#FFF'};
           box-shadow:  inset 3px 2px 5px 0 rgba(255, 255, 255, .5), rgba(104, 139, 255, 0.1) 7px 3px 10px, rgba(0,0,0, 0.1) 7px 5px 10px;
       }

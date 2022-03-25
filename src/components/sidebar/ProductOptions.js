@@ -1,24 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { HiHome, HiInbox, HiTag, HiUserGroup, HiChartBar, HiSpeakerphone, HiReceiptTax, HiGift, HiViewGridAdd, HiOfficeBuilding, HiQuestionMarkCircle } from 'react-icons/hi';
+import { HiViewGrid, HiPlusCircle, HiInbox, HiPencilAlt, HiUserGroup, HiChartBar, HiSpeakerphone, HiReceiptTax, HiGift, HiViewGridAdd, HiOfficeBuilding, HiQuestionMarkCircle } from 'react-icons/hi';
 
 
 export const menuItems = [
     {
-        name: "Home",
+        name: "View All",
         to: "/dashboard",
-        icon: <HiHome />,
+        icon: <HiViewGrid />,
+    },
+    {
+        name: "Add Products",
+        to: "add",
+        icon: <HiPlusCircle />,
+    },
+    {
+        name: "Edit Products",
+        to: "edit",
+        icon: <HiPencilAlt />,
     },
     {
         name: "Orders",
         to: `orders`,
         icon: <HiInbox />,
-    },
-    {
-        name: "Products",
-        to: "products",
-        icon: <HiTag />,
     },
     {
         name: "Customers",
@@ -71,6 +76,7 @@ const ProductOptionStyles = styled.ul`
 function ProductOptions(props) {
     return (
         <ProductOptionStyles>
+            {/* <h3>Products</h3> */}
             {menuItems.map((menuItem, index) => (
                 <li key={index} onClick={props.onClick}>
                 <Link to={menuItem.to}>

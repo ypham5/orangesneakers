@@ -15,6 +15,7 @@ function SideBar(props) {
 
     return (
         <SideBarStyles>
+            {/* <h2>Dashboard</h2> */}
             <div className="content">
                <ProductOptions/>
                <LogOutButton onClick={onLogoutRequest}><HiLogout class="menu-icon" size="1.5rem" color="#F8FAFC" />Log out</LogOutButton>

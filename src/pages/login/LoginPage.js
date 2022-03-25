@@ -102,7 +102,7 @@ function LoginPage(props) {
         </form>
       </div>
     </div>
-    <p className='copyright'>© 2022 Orange Label Company by Yen Pham. All rights reserved.</p>
+    <p className='copyright'>© 2022 Orange Label by Yen Pham. All rights reserved.</p>
     </LoginPageStyles>
   );
 }
